@@ -1,10 +1,20 @@
 // gulpfile.js// gulpfile.js
 
+
+const env = process.argv.slice(2);
+
+console.log(env);
+
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
 // 错误处理
 const notify = require("gulp-notify");
+// 合并代码
+const concat = require('gulp-concat');
+// 压缩代码
+const uglify = require('gulp-uglify');//压缩js代码
+const minifyCss = require('gulp-minify-css');// 压缩css代码
 
 // stylus
 const stylus = require('gulp-stylus');
@@ -34,12 +44,12 @@ gulp.task('babelify', function(){
         .pipe(babel({
             presets: ['es2015', 'es2016', 'es2017'],
             plugins: [
-                [
-                    "transform-runtime", {
-                        "polyfill": false, 
-                        "regenerator": true
-                    }
-                ]
+                // [
+                //     "transform-runtime", {
+                //         "polyfill": false, 
+                //         "regenerator": true
+                //     }
+                // ]
             ]
         }))
 		.on('error', handleErrors)   // 错误处理
@@ -47,8 +57,9 @@ gulp.task('babelify', function(){
             includeContent: false,
             sourceRoot: 'src'
         }))
+        .pipe(uglify())    //压缩
         .pipe(gulp.dest(DEST))
-        // .pipe(livereload());
+        .pipe(livereload());
 });
 
 // stylus -> css
@@ -62,19 +73,20 @@ gulp.task('stylus', function () {
 		sourceRoot: 'src'
 	}))
     .on('error', handleErrors)     //交给notify处理错误
+    .pipe(minifyCss())                 //- 压缩处理成一行
     .pipe(gulp.dest(DEST))
-    // .pipe(livereload());
+    .pipe(livereload());
 });
 
 
 gulp.task('watch-js', function(){
-    // livereload.listen();    
+    livereload.listen();    
     return gulp.watch(SRC_JS, ['babelify']);
 });
 
 
 gulp.task('watch-css', function(){
-    // livereload.listen();    
+    livereload.listen();    
     return gulp.watch(SRC_CSS, ['stylus']);
 });
 

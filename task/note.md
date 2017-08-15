@@ -19,3 +19,10 @@
 https://github.com/d3/d3
 https://bl.ocks.org/mbostock
 https://github.com/xswei/d3js_doc
+
+
+## 拖动和缩放都是触发的zoom事件, 并不是，主要还是事件绑定的对象不对
+
+## selection.call - 为当前选择调用一个函数。
+
+## d3.mouse - 获取相对于指定容器的鼠标位置。
