@@ -1481,7 +1481,7 @@ function renderEcharts4_5(container, data){
 
 
 
-$.get('/thsft/iFindService/Realty/industry-overview/get-map-data',
-	function(res){
-		console.log(res.data);
-}, 'json');
+// $.get('/thsft/iFindService/Realty/industry-overview/get-map-data',
+// 	function(res){
+// 		console.log(res.data);
+// }, 'json');

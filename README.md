@@ -1,17 +1,10 @@
 # d3
-d3 learn task
 
+d3 learn task gulp
 
-## process.argv.slice(2)
-
-通过process全局变量来在命令行内传递参数给要执行的文件
-
-如配置如下：
-
+可视化图表
+## 使用命令
 `
 "dev": "gulp --env dev",
 "build": "gulp --env build",
-
 `
-
-然后在gulpfile.js文件内，通过process.argv.slice(2)来获取参数
